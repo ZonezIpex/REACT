@@ -82,7 +82,7 @@ Node.js는 **라이언 달(Ryan Dahl)** 이 2009년에 개발했습니다. 당�
 
 ## <span style="background-color: yellow; color: black;">Node.js의 장단점</span>
 
-### ✅ 장점
+### ✅ ```장점```
 
 - **빠른 성능** – Chrome V8 엔진을 기반으로 동작하며, 비동기 및 논블로킹(Non-blocking) 방식으로 요청을 처리하여 빠른 속도를 자랑함.
 - **JavaScript 풀스택 개발 가능** – 프론트엔드와 백엔드를 모두 JavaScript로 개발할 수 있어, 개발 생산성이 높아지고 코드 재사용이 용이함.
