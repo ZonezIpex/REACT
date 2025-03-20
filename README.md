@@ -83,6 +83,185 @@ npm install
 - 프로젝트의 **의존성을 체계적으로 관리**하는 역할을 함.  
 - 프로젝트에 필요한 라이브러리를 **쉽게 설치, 업데이트, 유지**할 수 있도록 도와주는 시스템.  
 
+## 📦 `package.json`의 의존성 내용 종류  
+
+## 1️⃣ `dependencies`  
+- 실제 코드에서 **필수적으로 사용하는 라이브러리**입니다.  
+- 예: `React`, `Express` 등  
+
+## 2️⃣ `devDependencies`  
+- **개발할 때만 필요한 라이브러리**입니다.  
+- 예: `Webpack`, `ESLint` 등  
+
+## 3️⃣ `peerDependencies`  
+- 필요한 라이브러리이지만, **직접 설치하지 않고 사용자가 설치**하도록 합니다.  
+- 주로 **플러그인이나 확장 기능을 만들 때 사용**됩니다.  
+
+## 4️⃣ `optionalDependencies`  
+- **있어도 되고 없어도 되는 선택적 의존성**입니다.  
+- 특정 환경에서만 필요한 경우 사용됩니다.  
+
+---
+
+## `의존성 관리` 와 `package.json`  
+
+## 📌 `package.json`과 `package-lock.json` 차이  
+
+| 구분 | `package.json` | `package-lock.json` |
+|------|--------------|------------------|
+| **역할** | 프로젝트의 기본 정보와 의존성을 정의 | 설치된 패키지의 **정확한 버전 정보 저장** |
+| **내용** | 패키지 이름, 버전, 스크립트, 의존성 목록 포함 | 의존성 트리 및 패키지의 **정확한 버전 기록** |
+| **업데이트** | 직접 수정 가능 | 직접 수정하지 않으며, `npm install` 시 자동 업데이트 |
+| **버전 관리** | 일반적으로 `^` 또는 `~` 로 범위를 지정 | 특정 버전이 고정되어 **일관된 환경 유지 가능** |
+| **Git 관리** | 보통 Git에 포함됨 | **포함하는 것이 권장되지만**, `node_modules/`처럼 무시할 수도 있음 |
+
+---
+
+## 🔹 `package.json`과 `package-lock.json`의 역할 비교  
+
+- `package.json`에 **"react": "^18.0.0"** 이라고 기록되어 있으면,  
+  → **설치할 때 최신 18.x.x 버전**이 자동으로 설치될 수 있음.  
+
+- `package-lock.json`에는 **"react": "18.2.0"** 처럼 **정확한 버전이 기록**되어 있음.  
+  → `npm install`을 실행해도 **같은 버전**이 설치됨.  
+
+- 따라서, **팀 프로젝트에서는 `package-lock.json`을 유지**하는 것이 중요함.  
+
+---
+
+## ❓ `package-lock.json`만 유지하면 될까?  
+- **아니오! `package.json`도 반드시 유지해야 합니다.**  
+- 그 이유는 다음과 같습니다.  
+
+### ✅ `package.json`의 필요성  
+1️⃣ **새로운 개발자가 프로젝트를 처음 설치할 때**  
+   - `package-lock.json`만 있으면, 패키지 목록을 쉽게 확인할 수 없음.  
+   - `package.json`을 보면 어떤 패키지가 사용되는지 쉽게 파악 가능.  
+
+2️⃣ **의존성 업데이트 시 활용**  
+   - `package.json`에서 **버전 범위(`^`, `~`)를 지정하여 유연한 업데이트** 가능.  
+   - `package-lock.json`은 **버전을 고정**하기 때문에 **새로운 업데이트를 반영하려면 `package.json`이 필요**함.  
+
+3️⃣ **배포 환경에서 중요한 역할**  
+   - CI/CD(자동 배포) 시스템에서 **패키지 설치를 자동화**할 때 사용됨.  
+   - `package.json`이 있어야 패키지 관리 시스템이 정상 작동함.  
+
+---
+
+## 🎯 결론  
+✔ **`package.json`과 `package-lock.json`은 함께 유지해야 한다.**  
+✔ `package.json`은 **패키지 목록과 버전 범위를 정의**하는 역할.  
+✔ `package-lock.json`은 **정확한 버전을 고정**하여 동일한 환경을 유지하도록 보장.  
+✔ 협업 및 배포 환경에서도 두 파일을 모두 포함하는 것이 바람직함. 🚀  
+
+## `node_modules`의 재설치  
+
+## 📌 `node_modules`를 다시 설치해야 하는 경우  
+다음과 같은 **3가지 상황**에서 `node_modules`를 다시 설치해야 합니다.  
+
+1️⃣ **팀 프로젝트 작업 중**  
+   - GitHub에서 프로젝트 파일을 `clone`한 경우  
+
+2️⃣ **개인 프로젝트 작업 중**  
+   - 자신의 프로젝트를 **다른 PC에서 `clone`** 받아 개발해야 하는 경우  
+
+3️⃣ **프로젝트에 문제가 발생한 경우**  
+   - 의존성 충돌 또는 오류로 인해 `node_modules`를 다시 설치해야 하는 경우  
+
+---
+
+## 🔹 `clone`을 받은 프로젝트에서 `node_modules` 설치 방법  
+
+### ✅ 1. 패키지 설치 명령 실행  
+- `package.json`과 `package-lock.json`을 참고하여 패키지를 다시 설치합니다.  
+```bash
+npm install
+```
+
+## `node_modules`의 재설치  
+
+## 📌 프로젝트에 오류나 의존성 문제가 발생한 경우  
+
+### ✅ 1. `node_modules` 폴더와 `package-lock.json` 파일 삭제  
+문제 해결을 위해 **기존 패키지와 종속성을 제거**합니다.  
+
+```bash
+rm -rf node_modules package-lock.json
+```
+
+## `node_modules`의 재설치  
+
+## 📌 `package-lock.json`을 삭제해야 하는 경우  
+
+### ✅ 1. `package-lock.json`이 손상되었거나, 잘못된 의존성이 있을 때  
+- `package-lock.json`이 **의존성 충돌을 일으켜 문제가 발생**할 수 있음.  
+- 예를 들면,  
+  - 패키지를 여러 번 업데이트하면서 충돌이 발생하는 경우  
+  - `package.json`을 수동으로 수정하여 **의존성 목록이 `package-lock.json`과 불일치**하는 경우  
+- 이럴 때 **`package-lock.json`을 삭제하고 다시 생성하면 충돌이 해결될 수도 있음**.  
+
+---
+
+### ✅ 2. 최신 버전의 패키지를 다시 받고 싶을 때  
+- 특정 패키지의 **최신 버전을 적용하고 싶다면, `package-lock.json`을 삭제하는 것이 효과적**.  
+- 삭제 후 **다시 패키지를 설치하면 최신 종속성을 기반으로 새로운 `package-lock.json`이 생성**됨.  
+
+```bash
+rm -rf package-lock.json
+npm install
+```
+
+## 개요 Part
+
+## 📌 React의 기본 개념  
+
+- React는 **`component` 단위로 개발**하여 **레고를 조립하듯이 앱을 완성**합니다.  
+- `component`는 **작은 기능을 실행할 수 있는 하나의 모듈**입니다.  
+- [공식 사이트](https://react.dev/)의 홈에서 `component`가 어떻게 사용되는지 설명하고 있습니다.  
+- React가 `component`를 이용하여 **사용자 인터페이스(UI)** 를 구성하는 방법을 살펴보겠습니다.  
+
+---
+
+## 🛠 학습 방향  
+
+- 이해를 돕기 위해 **React 코드 예제가 제공되지만, 코드 자체를 깊이 이해할 필요는 없습니다**.  
+- **React `component`가 페이지로 변해가는 과정**에 집중해 주세요.  
+- [React 공식 사이트](https://react.dev/)에 접속하여 예제 코드를 확인하세요.  
+- 공식 사이트에서 **한글을 지원하지만, 자동 번역 기능은 사용하지 않는 것이 좋습니다**. ⚠️  
+- **좌측 코드 영역에 마우스를 `hover`하면**, 우측 출력 화면에서 어느 부분인지 확인할 수 있습니다.  
+- **`component`의 조립 과정에만 집중해 주세요!** 🚀  
+
+
+## Component를 사용한 유저 인터페이스 생성  
+
+## 📌 React에서 `component`란?  
+- React에서는 `component`를 사용하여 **사용자 인터페이스(UI)** 를 구성할 수 있습니다.  
+- `Video`, `Thumbnail`, `LikeButton` 등의 **React `component`를 생성**하고,  
+  이 `component`들을 결합하여 **화면, 페이지, 앱 전체를 구성**합니다.  
+
+---
+
+## 🛠 첫 번째 예제: `Video.js` (함수형 `component`)  
+
+- `Video.js`는 **함수형 `component`** 입니다.  
+- `component`의 이름은 **파일명과 동일하게 하며**,  
+  **PascalCase(첫 글자를 대문자로 시작)** 를 따릅니다.  
+- `Video` `component`는 **`Thumbnail`과 `LikeButton`이라는 두 개의 `component`를 포함**합니다.  
+
+```jsx
+function Video({ video }) {
+  return (
+    <div>
+      <Thumbnail video={video} />
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+      </a>
+      <p>{video.description}</p>
+      <LikeButton video={video} />
+    </div>
+  );
+}
+```
 
 
 ----------------------------------------------------------------------------------------------
