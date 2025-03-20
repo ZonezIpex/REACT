@@ -263,6 +263,176 @@ function Video({ video }) {
 }
 ```
 
+## 📌 React의 기본 개념과 컴포넌트 조립  
+
+---
+
+## 1️⃣ 개요  
+- React는 **`component` 단위로 개발**하여 **재사용 가능한 UI 조각을 조립**하듯이 앱을 완성합니다.  
+- `component`는 **작은 기능을 수행하는 독립적인 모듈**입니다.  
+- React의 공식 문서에서는 `component`가 **사용되는 방식과 개념**을 설명하고 있습니다.  
+- 이 문서에서는 **React `component`가 페이지로 변해가는 과정**에 집중하여 학습합니다.  
+
+---
+
+## 2️⃣ Component를 사용한 유저 인터페이스 생성  
+- React의 `component`는 **각각의 역할을 수행하는 작은 조각**입니다.  
+- 예를 들어, `Video`, `Thumbnail`, `LikeButton` 등의 `component`를 만들고  
+  이를 조합하여 **UI를 구성**할 수 있습니다.  
+- 첫 번째 예제에서는 `Video.js`라는 **함수형 `component`** 를 생성합니다.  
+- `component`의 이름은 **파일명과 동일하게 하고, `PascalCase` 네이밍 규칙**을 따릅니다.  
+- `Video.js` 내부에는 `Thumbnail`과 `LikeButton` 같은 **다른 `component`들이 포함**됩니다.  
+
+```jsx
+function Video({ video }) {
+  return (
+    <div>
+      <Thumbnail video={video} />
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+      </a>
+      <p>{video.description}</p>
+      <LikeButton video={video} />
+    </div>
+  );
+}
+```
+
+## 3️⃣ Props와 State 개념
+✅ Props (Properties)
+부모 component에서 자식 component로 데이터를 전달하는 방식입니다.
+Props는 읽기 전용(immutable) 이며, component 내부에서 변경할 수 없습니다.
+
+```jsx
+function Greeting({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+```
+```jsx
+<Greeting name="React" />
+```
+🔹 Greeting 컴포넌트는 name이라는 props를 전달받아 Hello, React!를 출력합니다.
+
+✅ State (상태)
+State는 component 내부에서 관리되는 데이터입니다.
+사용자의 입력, API 응답 등의 변화에 따라 component가 다시 렌더링될 수 있도록 합니다.
+jsx
+복사
+편집
+
+```jsx
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </div>
+  );
+}
+```
+
+## 4️⃣ 필요한 곳에 상호작용 기능 추가
+React component는 데이터를 수신하고, 화면을 업데이트해야 합니다.
+사용자의 입력을 받아 새로운 데이터를 다른 component에 전달할 수도 있습니다.
+이 과정에서 `React는 상호작용`을 통해 `얻은 데이터`를 `기반으로 화면을 동적으로 업데이트`합니다.
+예제에서는 검색 입력 필드(SearchInput)와 비디오 목록(VideoList) 두 개의 component를 결합합니다.
+
+```jsx
+import { useState } from 'react';
+
+function SearchableVideoList({ videos }) {
+  const [searchText, setSearchText] = useState('');
+  const foundVideos = filterVideos(videos, searchText);
+
+  return (
+    <>
+      <SearchInput
+        value={searchText}
+        onChange={(newText) => setSearchText(newText)}
+      />
+      <VideoList videos={foundVideos} emptyHeading={`No matches for "${searchText}"`} />
+    </>
+  );
+}
+```
+🔹 입력값이 변경될 때마다 `useState`를 통해 새로운 검색어를 저장하고, 비디오 목록을 필터링하여 업데이트합니다.
+
+## 🎯 결론
+✔ `React component`는 UI를 구성하는 작은 조각으로, 조합하여 완성된 인터페이스를 만듭니다.
+✔ Props는 `부모에서 자식으로 데이터를 전달하는 방법`이며,
+✔ State는 component 내부에서 `변경 가능한 데이터`로 `UI를 동적으로 업데이트`할 수 있도록 합니다.
+✔ 검색 입력과 같은 상호작용을 추가하면, React component 간의 데이터 흐름을 `관리`할 수 있습니다.
+
+## 5️⃣ full-stack App 개발을 도와주는 React Framework  
+
+## 📌 React는 UI 라이브러리, Framework는 전체 앱 구축  
+- React는 **라이브러리**이므로 `component`를 조합하여 UI를 만들 수 있지만,  
+  **라우팅 및 데이터 가져오기 등의 기능을 직접 제공하지는 않습니다.**  
+- 따라서 **전체 앱을 빌드하려면 Next.js 또는 Remix 같은 full-stack React Framework**를 활용하는 것이 좋습니다.  
+
+---
+
+## ✅ Next.js와 Remix의 역할  
+- Next.js와 Remix는 **서버 사이드 렌더링(SSR)과 정적 사이트 생성(SSG)을 지원하는 React 기반 Framework**입니다.  
+- Next.js의 라우팅 방식 중 하나로,  
+  **사이트의 `conf/[slug].js`와 같은 동적 라우팅 시스템을 제공**합니다.  
+- 이를 활용하면 **URL을 기반으로 동적으로 페이지를 생성**할 수 있습니다.  
+
+---
+
+## ✅ React도 하나의 아키텍처  
+- React는 **UI를 구성하는 아키텍처의 일부**로,  
+  단순히 프레임워크 없이도 `component` 기반으로 화면을 만들 수 있습니다.  
+- **아키텍처(software architecture)**  
+  - 소프트웨어의 구성 요소들 사이의 **유기적 관계를 표현**하며,  
+  - 설계와 업그레이드를 통제하는 **지침과 원칙**입니다.  
+  - [Wikipedia](https://en.wikipedia.org/wiki/Software_architecture) 참조  
+
+---
+
+## ✅ Framework를 활용한 데이터 처리  
+- Next.js 또는 Remix 같은 Framework을 사용하면,  
+  - **서버에서 실행되거나 빌드 과정에서 데이터를 불러와 동적 `component`에서 사용할 수 있습니다.**  
+  - 예를 들어, API 요청을 통해 데이터를 가져와 초기 렌더링 시 적용할 수 있습니다.  
+- 또한 **파일 또는 데이터베이스에서 데이터를 읽어와 특정 `component`에 전달할 수도 있습니다.**  
+
+---
+
+## ⚠️ 결론  
+✔ **full-stack App을 개발하려면 React 단독보다 Framework를 활용하는 것이 효율적**입니다.  
+✔ Next.js 또는 Remix는 **라우팅, 서버 사이드 렌더링, 데이터 페칭**을 포함한 기능을 제공합니다.  
+✔ 서버와 클라이언트 간의 데이터 흐름을 원활하게 관리하려면 **Framework을 적극 활용**하는 것이 좋습니다. 🚀  
+
+## 6️⃣ 모든 플랫폼에서 최고의 성능을 발휘하는 React  
+
+## 📌 React의 멀티 플랫폼 지원  
+- React를 사용하면 **동일한 기술 스택**으로 **웹 앱과 네이티브 앱을 모두 개발**할 수 있습니다.  
+- 각 플랫폼의 고유한 **강점을 활용하여, 일관된 UI/UX를 제공하는 인터페이스를 구현**할 수 있습니다.  
+
+---
+
+## ✅ 웹의 본질에 충실하기  
+### ⚡ 빠른 페이지 로딩  
+- **사용자는 웹 앱 페이지가 빠르게 로드되기를 기대**합니다.  
+- React는 **서버에서 데이터를 가져오는 동안에도 HTML을 스트리밍**할 수 있어,  
+  **JavaScript 코드가 로드되기 전에 콘텐츠를 점진적으로 채울 수 있습니다.**  
+- 이를 통해 **초기 로딩 속도를 개선**할 수 있습니다.  
+
+### 🖥️ 클라이언트 측 렌더링 최적화  
+- **표준 웹 API를 활용하여 렌더링 도중에도 UI를 반응적으로 갱신**할 수 있습니다.  
+- 이러한 기술들은 **사용자가 원하는 빠른 렌더링 환경을 제공**하는 데 도움을 줍니다.  
+
+---
+
+## 🎯 결론  
+✔ React는 **웹과 네이티브 앱을 하나의 코드베이스로 개발할 수 있도록 지원**합니다.  
+✔ **서버에서 데이터 로딩 중에도 콘텐츠를 스트리밍하여 빠른 첫 렌더링이 가능**합니다.  
+✔ **표준 웹 API를 활용하여 더욱 반응적인 UI 경험을 제공**할 수 있습니다. 🚀  
+
 
 ----------------------------------------------------------------------------------------------
 # 📌 Git 설명과 설정방법 + Node.js란 무엇인가? 
