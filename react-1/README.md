@@ -11,7 +11,7 @@ Component의 생성 및 nesting(중첩)
 
 Nesting은 CSS 선택자의 중첩 구조를 생각하면 쉽게 이해할 수 있습니다.
  -> css 중첩 구조는 2023년 부터 자체 지원이 되었스며, 이전에는 Sass나 Lass등을 이용할 때 사용되었다.
- ![컴포넌트.jpg}](../통합코드/image/component.jpg)
+ ![컴포넌트.jpg}](../image/컴포넌트.jpg)
 
  < 실습 >
 
