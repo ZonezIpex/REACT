@@ -196,7 +196,7 @@ return <h1>Hello, {name}!</h1>;
   - `className="avatar"`: **단순한 문자열**
 
 <h2>오늘 한 실습 사진</h2>
-![Image](https://github.com/user-attachments/assets/949bb8f2-9182-4f63-a5de-41f4decea63b)
+<img width="383" alt="Image" src="https://github.com/user-attachments/assets/185eb338-0251-4f1e-a911-39170077f6f8" />
 
 # 📌 React Project의 구조 및 역할  
 <h1>🗓 **2025-03-20 / 3번째 수업**</h1>
