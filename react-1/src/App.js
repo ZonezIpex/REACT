@@ -1,6 +1,7 @@
 import Myb from "./MyButton"
 import { Button1, Button2, Button3 } from "./ButtonLib"
 import AP from "./AboutPage"
+import PP from "./Profile"
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Button2/>
       <Button3/>
       <AP/>
+      <PP/>
     </div>
   )
 }
