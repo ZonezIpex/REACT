@@ -1,18 +1,18 @@
 function Button1() {
     return (
-      <button>its me 나는 1이에요</button>
+      <button>다리우스 200만점</button>
     )
   }
 
   function Button2() {
     return (
-      <button>its me 나는 2이에요</button>
+      <button>야스오 540만점</button>
     )
   }
 
   function Button3() {
     return (
-      <button>its me 나는 3이에요</button>
+      <button>요네 320만점</button>
     )
   }
 

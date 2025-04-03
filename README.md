@@ -1,5 +1,150 @@
 <h1>202130413 신민수</h1>
 
+# 📌 이벤트에 응답하기  
+<h1>🗓 **2025-04-03 / 5번째 수업**</h1>
+
+# 📌 이벤트에 응답하고 화면 업데이트하기
+
+## 🗓️ 2025-04-03 / 5번째 수업
+
+---
+
+## 1. 이벤트 핸들러 선언
+
+- 컴포넌트 내부에 **이벤트 핸들러 함수**를 선언하면 이벤트에 응답할 수 있습니다.
+- 예시:
+
+```jsx
+function handleClick() {
+  // 클릭 시 실행할 코드
+}
+
+<button onClick={handleClick}>Click me</button>
+```
+
+> `handleClick` 뒤에 소괄호 `()`가 없는 것에 주의!  
+> (클릭될 때 실행되도록 함수를 **참조**만 전달)
+
+---
+
+## 2. 화면 업데이트하기
+
+컴포넌트가 특정 정보를 **기억하고 표시**해야 할 때,  
+예를 들어 버튼 클릭 횟수를 세고 싶다면 **state(상태)** 를 사용합니다.
+
+---
+
+### 🔹 useState 소개
+
+- React에서 상태 관리를 위해 `useState`를 사용
+- `useState`는 React의 **Named Export**로 제공됨
+
+```jsx
+import { useState } from 'react';
+```
+
+---
+
+### 🔹 state 변수 선언 방법
+
+```jsx
+const [count, setCount] = useState(0);
+```
+
+- `count`: 현재 상태를 담는 변수
+- `setCount`: 상태를 업데이트하는 함수
+
+> ✅ 관용적으로 `[something, setSomething]` 형태로 작성합니다.
+
+---
+
+## 🧪 실습 예제
+
+다음은 버튼 클릭 시 카운터가 증가하는 React 컴포넌트입니다.
+
+```jsx
+import { useState } from 'react';
+
+function Button() {
+  const [count, setCount] = useState(0); // 초기 상태는 0
+
+  function handleClick() {
+    setCount(count + 1); // 상태 업데이트
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+```
+
+### ✅ 설명
+
+- `useState(0)`으로 초기값 설정
+- 버튼 클릭 시 `handleClick()` 실행 → `setCount()` 호출 → 상태 업데이트
+- React가 변경된 상태를 기반으로 **자동으로 UI를 다시 렌더링**함
+
+---
+
+## 🖼️ 관련 이미지
+
+![Image](https://github.com/user-attachments/assets/71abf0dd-1ecd-42b7-83b1-74d5d866065f)
+
+---
+
+## 🔄 화면 업데이트 실습: CountState 컴포넌트
+
+이번 실습에서는 **카운터 기능을 하나의 버튼만으로 구현**하고,  
+불필요한 복잡성을 제거하여 `useState`에 집중할 수 있도록 구성합니다.
+
+---
+
+### 🎯 목표
+
+- 버튼이 클릭될 때마다 숫자가 1씩 증가하는 기능 만들기
+- `CountState.js`라는 파일 안에 컴포넌트를 정의하기
+
+---
+
+### 📁 파일: `CountState.js`
+
+```jsx
+import { useState } from 'react';
+
+function CountState() {
+  const [count, setCount] = useState(0); // 초기 상태: 0
+
+  function handleClick() {
+    setCount(count + 1); // 상태 업데이트
+  }
+
+  return (
+    <button onClick={handleClick}>
+      클릭 횟수: {count}
+    </button>
+  );
+}
+
+export default CountState;
+```
+
+---
+
+### ✅ 설명 요약
+
+- `useState(0)` → 컴포넌트가 처음 렌더링될 때 `count` 값은 `0`
+- `setCount(count + 1)` → 상태 변경 함수로 새 값을 전달
+- 버튼을 클릭하면 `handleClick()` 함수가 실행되어 `count`가 증가
+- 버튼 하나만 렌더링되어 **코드가 간결**하고 `state` 학습에 집중 가능
+
+---
+
+> 🔔 다음 단계에서는 이 컴포넌트를 App.js 또는 메인 파일에서 불러와 사용하는 법을 이어서 작성할 예정입니다.
+
+
+
 # 📌 React의 개발흐름 이해와 전체 개념정리  
 <h1>🗓 **2025-03-27 / 4번째 수업**</h1>
 

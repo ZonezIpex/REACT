@@ -1,5 +1,11 @@
 export default function MyButton() {
+    function handleClick() {
+      alert(`you clickd me`)
+    }
+
     return (
-      <button>나는 버튼입니다만</button>
+      <button onClick={handleClick}>
+        I'm button
+      </button>
     )
   }

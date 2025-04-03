@@ -1,7 +1,7 @@
 import './Profile.css';
 
 const user = {
-    name: 'Hedy Lamarr',
+    name: '레벨 1084',
     imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
     imageSize: 90,
   };
