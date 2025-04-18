@@ -8,35 +8,16 @@ body {
   padding: 0;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  font-size: 22px;
 }
 
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-h3 {
-  margin-top: 0;
-  font-size: 18px;
-}
-
-h4 {
-  margin-top: 0;
-  font-size: 16px;
-}
-
-h5 {
-  margin-top: 0;
-  font-size: 14px;
-}
-
-h6 {
-  margin-top: 0;
-  font-size: 12px;
-}
+h1 { font-size: 22px; }
+h2 { font-size: 20px; }
+h3 { font-size: 18px; }
+h4 { font-size: 16px; }
+h5 { font-size: 14px; }
+h6 { font-size: 12px; }
 
 code {
   font-size: 1.2em;
@@ -44,16 +25,6 @@ code {
 
 ul {
   padding-inline-start: 20px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
 }
 
 .square {
@@ -71,7 +42,7 @@ body {
   width: 34px;
 }
 
-.board-row:after {
+.board-row::after {
   clear: both;
   content: '';
   display: table;
@@ -80,6 +51,7 @@ body {
 .status {
   margin-bottom: 10px;
 }
+
 .game {
   display: flex;
   flex-direction: row;
