@@ -1,6 +1,93 @@
 <h1>202130413 신민수</h1>
 
-# 📌 애플리케이션 최적화화
+# 📌 프로젝트에 React를 
+<h1>🗓 **2025-06-05 / 14번째 수업**</h1>
+
+## 기존 프로젝트에 React 추가
+
+### [ 페이지 어디에서든 React 컴포넌트 렌더링하기 ]
+
+- 이전 단계에서는, **메인 파일 최상단**에 아래 코드를 넣었습니다.
+
+```jsx
+import { createRoot } from 'react-dom/client';
+
+// 기존 HTML 콘텐츠를 지웁니다.
+document.body.innerHTML = '<div id="app"></div>';
+
+// 대신에 여러분이 작성한 React 컴포넌트를 렌더링합니다.
+const root = createRoot(document.getElementById('app'));
+root.render(<h1>Hello, world</h1>);
+```
+
+---
+
+## 🧩 기존 프로젝트에 React 추가
+
+### ✅ 이렇게 하면 `document.getElementById`로 HTML 엘리먼트를 찾아  
+`createRoot`에 전달함으로써 해당 요소 내부에 React 컴포넌트를 렌더링할 수 있습니다.
+
+```js
+import { createRoot } from 'react-dom/client';
+
+function NavigationBar() {
+  // TODO: 실제로 네비게이션 바를 구현합니다.
+  return <h1>Hello from React!</h1>;
+}
+
+const domNode = document.getElementById('navigation');
+const root = createRoot(domNode);
+root.render(<NavigationBar />);
+```
+
+💡 이 코드에는
+"This paragraph is a part of HTML."
+라는 문구를 찾을 수 없습니다.
+
+어디에 있을까요?
+
+👉 codesandbox에서 확인해 보세요.
+
+---
+
+## 🧩 기존 프로젝트에 React 추가
+
+- 기존에 존재하던 `index.html`의 원본 **HTML 콘텐츠가 그대로 남아있는 것**을 확인할 수 있습니다.
+
+- 하지만 이제는 `<nav id="navigation">` 안에  
+  개발자가 직접 작성한 **`NavigationBar` React 컴포넌트**가 나타납니다.
+
+- 기존 HTML 페이지에서 React 컴포넌트가 렌더링 되는 것에 대해 더 알아보려면  
+  👉 [`createRoot` 사용법 문서](https://react.dev/reference/react-dom/client/createRoot)를 읽어보세요.  
+  ※ 이 문서는 **React 내부 공식 문서**입니다.
+
+---
+
+- 기존 프로젝트에서 React를 도입할 때,  
+  일반적으로 **작은 상호작용용 컴포넌트(예: 버튼)**에서 시작하여  
+  → 점진적으로 "상위 구조로 확장하면서"  
+  → 결국에는 전체 페이지가 React로 빌드될 때까지 이 과정을 반복하게 됩니다.
+
+- 이 지점에 도달한다면  
+  👉 React의 장점을 최대한 활용하기 위해  
+  **React 프레임워크로 마이그레이션** 하는 것을 권장합니다.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+#
+
+# 📌 애플리케이션 최적화
 <h1>🗓 **2025-05-29 / 13번째 수업**</h1>
 
 ## 🚀 애플리케이션 성능 개선
